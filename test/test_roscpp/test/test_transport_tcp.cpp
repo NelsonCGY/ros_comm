@@ -33,6 +33,8 @@
  * Test version macros
  */
 
+#include <memory>
+
 #include <gtest/gtest.h>
 #include "ros/poll_set.h"
 #include "ros/transport/transport_tcp.h"
@@ -132,7 +134,7 @@ TEST_F(Synchronous, readWhileWriting)
   for (int i = 0; i < 10; ++i)
   {
     const uint32_t buf_size = 1024*1024;
-    std::auto_ptr<uint8_t> read_buf(new uint8_t[buf_size]);
+    boost::shared_ptr<uint8_t[]> read_buf(new uint8_t[buf_size]);
 
     std::stringstream ss;
     for (int i = 0; i < 100000; ++i)

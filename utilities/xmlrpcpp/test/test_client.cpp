@@ -501,7 +501,7 @@ TEST_F(MockSocketTest, writeRequest) {
   a._request = "FAKE_REQUEST";
 
   // Check that request length is the correct size.
-  ASSERT_EQ(12, a._request.size());
+  ASSERT_EQ(12u, a._request.size());
 
   // Expect a write; write all bytes and return success.
   Expect_nbWrite(7, "FAKE_REQUEST", 12, true);
@@ -528,7 +528,7 @@ TEST_F(MockSocketTest, writeRequest_partial) {
   a._request = "FAKE_REQUEST";
 
   // Check that request length is the correct size.
-  ASSERT_EQ(12, a._request.size());
+  ASSERT_EQ(12u, a._request.size());
 
   // Expect a write; only write 5 bytes and return success.
   Expect_nbWrite(7, "FAKE_REQUEST", 5, true);
@@ -561,7 +561,7 @@ TEST_F(MockSocketTest, writeRequest_partial_error) {
   a._request = "FAKE_REQUEST";
 
   // Check that request length is the correct size.
-  ASSERT_EQ(12, a._request.size());
+  ASSERT_EQ(12u, a._request.size());
 
   // Expect a write; only write 5 bytes and return success.
   Expect_nbWrite(7, "FAKE_REQUEST", 5, true);

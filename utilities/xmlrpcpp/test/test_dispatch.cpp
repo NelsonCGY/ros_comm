@@ -213,7 +213,7 @@ class MockSourceTest : public ::testing::Test {
 TEST_F(MockSourceTest, ReadEvent) {
   m.event_result = XmlRpcDispatch::ReadableEvent;
   dispatch.addSource(&m, XmlRpcDispatch::ReadableEvent);
-  EXPECT_EQ(dispatch._sources.size(), 1);
+  EXPECT_EQ(dispatch._sources.size(), 1u);
 
   // Select returns not readable; expect no events.
   fds[0].events = POLLIN;
@@ -237,7 +237,7 @@ TEST_F(MockSourceTest, WriteEvent) {
   m.setKeepOpen();
   m.event_result = 0;
   dispatch.addSource(&m, XmlRpcDispatch::WritableEvent);
-  EXPECT_EQ(dispatch._sources.size(), 1);
+  EXPECT_EQ(dispatch._sources.size(), 1u);
 
   // Select returns writeable, expect one write event.
   fds[0].events = POLLOUT;
@@ -249,7 +249,7 @@ TEST_F(MockSourceTest, WriteEvent) {
   EXPECT_CLOSE_CALLS(0);
   // However, even if keepOpen is set, we expect the socket to be removed from
   // the sources list
-  EXPECT_EQ(dispatch._sources.size(), 0);
+  EXPECT_EQ(dispatch._sources.size(), 0u);
 
   // Expect no more events. Since there's nothing in the dispatch list, we
   // don't expect that select will be called.
